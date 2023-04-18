@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const YourTransactions = () => {
+import Delete from "../Icons/Delete";
+import Edits from "../Icons/Edits";
+
+const YourTransactions = ({ transaction }) => {
+  const { id, name, amount, type } = transaction;
+
   return (
     <div className="conatiner_of_list_of_transactions">
       <ul>
         <li className="transaction income">
-          <p>Earned this month</p>
+          <p>{name}</p>
           <div className="right">
-            <p>৳ 100</p>
+            <p>৳ {amount}</p>
             <button className="link">
-              <img className="icon" src="./images/edit.svg" />
+              <Delete />
             </button>
             <button className="link">
-              <img className="icon" src="./images/delete.svg" />
+              <Edits />
             </button>
           </div>
         </li>

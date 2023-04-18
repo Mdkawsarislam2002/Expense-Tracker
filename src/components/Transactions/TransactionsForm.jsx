@@ -12,10 +12,12 @@ const TransactionsForm = () => {
 
       <div className="form-group radio">
         <label htmlFor="transaction_type">Type</label>
+
         <div className="radio_group">
           <input type="radio" value="income" name="transaction_type" checked />
           <label htmlFor="transaction_type">Income</label>
         </div>
+
         <div className="radio_group">
           <input
             type="radio"

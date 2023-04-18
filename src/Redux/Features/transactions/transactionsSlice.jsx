@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchTransactions } from "./transactionsApi";
+import {
+  fetchTransactions,
+  addTransaction,
+  deleteTransaction,
+  editTransaction,
+} from "./transactionsApi";
 
 const initialState = {
   data: [],
@@ -16,15 +21,18 @@ const transactionsSlice = createSlice({
       .addCase(fetchTransactions.fulfilled, (state, action) => {
         state.data = action.payload;
 
-        state.isLoading = true;
+        state.isLoading = false;
         state.isError = false;
+        state.errorMsg = "";
       })
       .addCase(fetchTransactions.pending, (state, actions) => {
         state.errorMsg = "";
+        state.isLoading = true;
       })
       .addCase(fetchTransactions.rejected, (state, action) => {
         state.isError = true;
         state.errorMsg = action.payload;
+        state.data = [];
       });
   },
 });

@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+//  redux
+import { fetchTransactions } from "../../Redux/Features/transactions/transactionsApi";
+import { useDispatch, useSelector } from "react-redux";
+
+//  components
 import TransactionsForm from "./TransactionsForm";
 import YourTransactions from "./YourTransactions";
 
 const Transactions = () => {
+  const dispatch = useDispatch();
+  const { data, isLoading, isError, errorMsg } = useSelector(
+    (state) => state.transactionsData
+  );
+
+  useEffect(() => {
+    dispatch(fetchTransactions());
+  }, []);
+  console.log(data);
+
   return (
     <>
       <div className="main">
@@ -19,7 +35,17 @@ const Transactions = () => {
 
           <p className="second_heading">Your Transactions:</p>
 
-          <YourTransactions />
+          {data?.length > 0 &&
+            !isLoading &&
+            !isError &&
+            data?.map((allTransaction) => (
+              <YourTransactions
+                key={allTransaction.id}
+                transaction={allTransaction}
+              />
+            ))}
+          {isLoading && <p>Loading...</p>}
+          {isError && <p>{errorMsg}</p>}
         </div>
       </div>
     </>
