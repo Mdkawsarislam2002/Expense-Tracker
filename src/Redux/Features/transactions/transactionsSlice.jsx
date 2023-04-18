@@ -25,7 +25,7 @@ const transactionsSlice = createSlice({
         state.isError = false;
         state.errorMsg = "";
       })
-      .addCase(fetchTransactions.pending, (state, actions) => {
+      .addCase(fetchTransactions.pending, (state) => {
         state.errorMsg = "";
         state.isLoading = true;
       })
