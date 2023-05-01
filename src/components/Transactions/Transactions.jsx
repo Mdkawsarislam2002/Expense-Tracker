@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 //  redux
 import { fetchTransactions } from "../../Redux/Features/transactions/transactionsApi";
@@ -10,14 +10,13 @@ import YourTransactions from "./YourTransactions";
 
 const Transactions = () => {
   const dispatch = useDispatch();
-  const { data, isLoading, isError, errorMsg } = useSelector(
+  const { data, isLoading, isError, errorMsg, dltMsg } = useSelector(
     (state) => state.transactionsData
   );
 
   useEffect(() => {
     dispatch(fetchTransactions());
-  }, []);
-  console.log(data);
+  }, [dispatch, dltMsg]);
 
   return (
     <>
@@ -34,6 +33,7 @@ const Transactions = () => {
           <TransactionsForm />
 
           <p className="second_heading">Your Transactions:</p>
+          {data?.length == 0 && <p>No transaction to show </p>}
 
           {data?.length > 0 &&
             !isLoading &&

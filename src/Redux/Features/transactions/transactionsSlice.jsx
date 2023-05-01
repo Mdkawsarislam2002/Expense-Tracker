@@ -11,6 +11,7 @@ const initialState = {
   isLoading: false,
   isError: false,
   errorMsg: "",
+  dltMsg: "",
 };
 
 const transactionsSlice = createSlice({
@@ -34,6 +35,10 @@ const transactionsSlice = createSlice({
         state.errorMsg = action.payload;
         state.data = [];
       });
+
+    builder.addCase(deleteTransaction.fulfilled, (state) => {
+      state.dltMsg = "deleted successfully";
+    });
   },
 });
 

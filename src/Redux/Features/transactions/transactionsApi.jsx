@@ -12,21 +12,21 @@ export const fetchTransactions = createAsyncThunk(
 export const addTransaction = createAsyncThunk(
   "transactions/addTransaction",
   async ({ data }) => {
-    const response = await axios.post("/transactions", data);
+    const response = await TheAxios.post("/transactions", data);
     return response.data;
   }
 );
 export const editTransaction = createAsyncThunk(
   "transactions/editTransaction",
   async ({ id, data }) => {
-    const response = await axios.put(`/transactions/${id}`, data);
+    const response = await TheAxios.put(`/transactions/${id}`, data);
     return response.data;
   }
 );
 export const deleteTransaction = createAsyncThunk(
   "transactions/deleteTransaction",
   async ({ id }) => {
-    const response = axios.delete(`/transactions/${id}`);
+    const response = TheAxios.delete(`/transactions/${id}`);
     return response.data;
   }
 );
