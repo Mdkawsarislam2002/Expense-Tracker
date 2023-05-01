@@ -38,10 +38,11 @@ const Transactions = () => {
           {data?.length > 0 &&
             !isLoading &&
             !isError &&
-            data?.map((allTransaction) => (
+            data?.map((allTransaction, index) => (
               <YourTransactions
                 key={allTransaction.id}
                 transaction={allTransaction}
+                index={index}
               />
             ))}
           {isLoading && <p>Loading...</p>}

@@ -1,19 +1,27 @@
 /* eslint-disable react/prop-types */
 import { useDispatch } from "react-redux";
 import { deleteTransaction } from "../../Redux/Features/transactions/transactionsApi";
+import { motion } from "framer-motion";
 
 import Delete from "../Icons/Delete";
 import Edits from "../Icons/Edits";
 
-const YourTransactions = ({ transaction }) => {
+const YourTransactions = ({ transaction, index }) => {
   const { id, name, amount, type } = transaction;
 
   const dispatch = useDispatch();
 
   return (
-    <div className="conatiner_of_list_of_transactions">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 * (index / 2) }}
+      className="conatiner_of_list_of_transactions "
+    >
       <ul>
-        <li className="transaction income">
+        <li
+          className={`transaction ${type === "income" ? "income" : "expense"}`}
+        >
           <p>{name}</p>
           <div className="right">
             <p>৳ {amount}</p>
@@ -31,7 +39,7 @@ const YourTransactions = ({ transaction }) => {
           </div>
         </li>
       </ul>
-    </div>
+    </motion.div>
   );
 };
 
