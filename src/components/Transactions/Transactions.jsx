@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 //  components
 import TransactionsForm from "./TransactionsForm";
 import YourTransactions from "./YourTransactions";
+import BalanceSum from "./BalanceSum";
 
 const Transactions = () => {
   const dispatch = useDispatch();
@@ -22,14 +23,7 @@ const Transactions = () => {
     <>
       <div className="main transition-all">
         <div className="container">
-          <div className="top_card">
-            <p>Your Current Balance</p>
-            <h3>
-              <span>৳</span>
-              <span>10500</span>
-            </h3>
-          </div>
-
+          <BalanceSum data={data} />
           <TransactionsForm />
 
           <p className="second_heading">Your Transactions:</p>

@@ -43,6 +43,30 @@ const transactionsSlice = createSlice({
       .addCase(deleteTransaction.pending, (state) => {
         state.dltMsg = "";
       });
+
+    //  add Transaction
+    builder
+      .addCase(addTransaction.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      .addCase(addTransaction.fulfilled, (state, actions) => {
+        state.data.push(actions.payload);
+        state.isLoading = true;
+      });
+    //  edit Transaction
+    builder
+      .addCase(editTransaction.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      .addCase(editTransaction.fulfilled, (state, actions) => {
+        let findIndex = state.data.findIndex((items) => {
+          return items.id === actions.payload.id;
+        });
+        state.data[findIndex] = actions.payload;
+        state.isLoading = true;
+      });
   },
 });
 
