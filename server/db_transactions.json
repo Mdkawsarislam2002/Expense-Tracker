@@ -5,12 +5,6 @@
       "amount": 3500,
       "type": "income",
       "id": 3
-    },
-    {
-      "name": "coaching fee ",
-      "amount": 1200,
-      "type": "expense",
-      "id": 4
     }
   ]
 }

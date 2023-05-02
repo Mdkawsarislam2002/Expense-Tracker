@@ -38,6 +38,10 @@ const transactionsSlice = createSlice({
 
     builder
       .addCase(deleteTransaction.fulfilled, (state, actions) => {
+        const filteredData = state.data.filter((item) => {
+          return item.id !== actions.payload;
+        });
+        state.data = filteredData;
         state.dltMsg = `Transaction with id ${actions.payload} deleted successfully`;
       })
       .addCase(deleteTransaction.pending, (state) => {
