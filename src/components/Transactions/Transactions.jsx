@@ -20,7 +20,7 @@ const Transactions = () => {
 
   return (
     <>
-      <div className="main">
+      <div className="main transition-all">
         <div className="container">
           <div className="top_card">
             <p>Your Current Balance</p>
